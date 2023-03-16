@@ -1,0 +1,54 @@
+/* css code here  */
+.intero-container label {
+    display: block;
+}
+.intero-container input,
+.intero-container select {
+    width: 100%;
+    min-width: 100%;
+}
+.intero-container img {
+    width: 100%;
+}
+.intero-col2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+.intero-color-variation {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    max-height: 225px;
+    overflow-y: scroll;
+}
+.intero-select-optionR > div {
+    margin-bottom: 20px;
+}
+.intero-select-optionR > div:last-child {
+    margin-bottom: 0;
+}
+.intero-left-button button {
+    width: 100%;
+}
+.intero-input-col2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 30px;
+}
+.intero-input-col3 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 30px;
+}
+.intero-option-bottom {
+    margin-top: 25px;
+}
+.intero-cart-button {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+.intero-cart-button .intero-right-btn{
+    text-align: right;
+}
