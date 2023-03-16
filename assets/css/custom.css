@@ -19,14 +19,37 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
-    max-height: 225px;
+    max-height: 198px;
     overflow-y: scroll;
+}
+.intero-color-variation img {
+    width: 100%;
+    height: 125px !important;
+    object-fit: cover;
 }
 .intero-select-optionR > div {
     margin-bottom: 20px;
 }
 .intero-select-optionR > div:last-child {
     margin-bottom: 0;
+}
+.intero-select-optionR a {
+    display: block;
+    position: relative;
+    padding: 8px 0;
+    color: #fff;
+    text-transform: uppercase;
+    background: #000;
+    text-align: center;
+}
+.intero-select-optionR a input[type='radio'] {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
 }
 .intero-left-button button {
     width: 100%;
