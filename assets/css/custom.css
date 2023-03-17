@@ -83,3 +83,18 @@
 	height: 530px !important;
 	object-fit: cover;
 }
+.intero_product_img_thumbnail {
+    position: relative;
+}
+.intero_product_img_thumbnail .intero-product-price {
+	position: absolute;
+    top: 0;
+    left: 0;
+    background: #e31e24;
+    padding: 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    min-width: 70px;
+    text-align: center;
+}

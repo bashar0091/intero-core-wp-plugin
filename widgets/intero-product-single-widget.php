@@ -94,46 +94,82 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 						<!-- option field  -->
 						<div class="intero-select-optionR">
-
 							<div>
 								<label for="category">SELECT A CATEGORY</label>
+								<input type="text" value="<?php
+									$categories = get_the_terms( get_the_ID(), 'product_cat' );
+									$category_slug = '';
 
-								<input type="text" value="<?php echo single_term_title();?>" disabled>
+									if ( $categories && ! is_wp_error( $categories ) ) {
+									// Loop through each category
+									foreach ( $categories as $category ) {
+										// Get the category name and link
+										$category_name = $category->name;
+										$category_slug = $category->slug;
+										
+										// Display the category name and link
+										echo esc_html( $category_name );
+									}
+									}
+								?>" disabled>
 							</div>
 
 							<div>
 								<label for="collect_list">Collection List</label>
-								<?php
-									$category = get_queried_object();
-									$category_slug = $category->slug;
-
+								<select id="collect_list">
+								<option value="">Select Collection List</option>
+								<?php 
+									$product_slugOut = $product->get_slug();
+									
 									$args = array(
-										'taxonomy'     => 'product_cat',
-										'hierarchical' => 1,
-										'parent'       => get_term_by( 'slug', $category_slug, 'product_cat' )->term_id,
-										'hide_empty'   => 0
-									);
-									
-									$subcategories = get_terms( $args );
-									
-									if ( $subcategories ) {
-										echo '<ul id="collect_list">';
-									
-										foreach ( $subcategories as $subcategory ) {
-											echo '<li><a href="' . get_term_link( $subcategory ) . '">' . $subcategory->name . '</a></li>';
+										'post_type' => 'product',
+										'tax_query' => array(
+											array(
+												'taxonomy' => 'product_cat',
+												'field' => 'slug',
+												'terms' => $category_slug,
+											)
+										),
+										'posts_per_page' => -1,
+									  );
+									  
+									  $query = new WP_Query( $args );
+									  
+									  if ( $query->have_posts() ) {
+										while ( $query->have_posts() ) {
+										  $query->the_post();
+										  
+										  $product_slugIn = get_post_field( 'post_name', get_the_ID() );
+								?>
+									<option onclick="location.href='<?php echo get_the_permalink();?>'" <?php echo $product_slugOut == $product_slugIn ? 'selected' : ''; ?>><?php echo get_the_title();?></option>
+								<?php 
 										}
-									
-										echo '</ul>';
 									}
 								?>
+								</select>
 								
 							</div>
 
 							<div class="intero-color-variation">
 								<?php 
+									if ($product->is_type('variable')) {
+
+										$variations = $product->get_available_variations();
 									
+										foreach ($variations as $variation) {
+											$variation_id = $variation['variation_id'];
+											$variation_data = $variation['attributes'];
+											$variation_image = wp_get_attachment_image_src($variation['image_id'], 'full');
+											$variation_price = $variation['display_price'];
+											$variation_name = '';
+											foreach ($variation_data as $key => $value) {
+												$taxonomy = str_replace('attribute_', '', $key);
+												$term = get_term_by('slug', $value, $taxonomy);
+												$variation_name =  $term->name;
+											}
 								?>
 								<div>
+									<input type="hidden" value="<?php echo $variation_price;?>" class="intero_product_price">
 									<img src="<?php echo $variation_image[0];?>" alt="">
 									<span><?php echo $variation_name;?></span>
 									<a href="javascript:void(0)">
@@ -142,7 +178,9 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 									</a>
 								</div>
 								<?php
-										
+											
+										}
+									}
 								?>
 							</div>
 

@@ -8,4 +8,7 @@ jQuery('.intero-color-variation a').click(function() {
 
     var intero_var_img_get = jQuery('.intero_var_select img').attr('src');
     jQuery('.intero_product_img_thumbnail img').attr('src', intero_var_img_get);
+
+    var intero_color_variation = jQuery('.intero_var_select .intero_product_price').val();
+    jQuery('.intero_product_img_thumbnail').append(`<div class="intero-product-price">${ '$' + intero_color_variation }</div>`);
 });
