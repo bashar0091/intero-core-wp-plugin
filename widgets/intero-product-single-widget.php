@@ -88,7 +88,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 					<!-- intero image option left right grid  -->
 					<div class="intero-col2">
-						<div>
+						<div class="intero_product_img_thumbnail">
 							<img src="<?php echo get_the_post_thumbnail_url();?>" alt="product-image">
 						</div>
 
@@ -141,9 +141,9 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 								<div>
 									<img src="<?php echo $variation_image[0];?>" alt="">
 									<span><?php echo $variation_name;?></span>
-									<a href="#!">
+									<a href="javascript:void(0)">
 										<input type="radio" name="variation_id" value="<?php echo $variation_id;?>">
-										Choose
+										<span class="intero_color_choose_text">Choose</span>
 									</a>
 								</div>
 								<?php
@@ -164,33 +164,34 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 						<div class="intero-input-col3">
 							<div>
-								<label for="">Product width, mm How to measure?</label>
-								<input type="number" name="width" id="" value="500">
+								<label for="intero_product_width">Product width, mm How to measure?</label>
+								<input type="number" name="intero_product_width" id="intero_product_width" value="500">
 							</div>
 
 							<div>
-								<label for="">Fabric width, mm How to measure?</label>
-								<input type="number" name="" id="" value="465">
+								<label for="intero_fabric_width">Fabric width, mm How to measure?</label>
+								<input type="number" name="intero_fabric_width" id="intero_fabric_width" value="465">
 							</div>
 
 							<div>
-								<label for="">Product height, mm How to measure?</label>
-								<input type="number" name="" id="" value="500">
+								<label for="intero_product_height">Product height, mm How to measure?</label>
+								<input type="number" name="intero_product_height" id="intero_product_height" value="500">
 							</div>
 						</div>
 
 						<div class="intero-input-col3">
 							<div>
-								<label for="">Fabric height, mm How to measure?</label>
-								<input type="number" name="" id="" value="490">
+								<label for="intero_fabric_height">Fabric height, mm How to measure?</label>
+								<input type="number" name="intero_fabric_height" id="intero_fabric_height" value="490">
 							</div>
 
 							<div>
-								<label for="">Mechanism color</label>
-								<select id="collect_list">
-									<option value="">White</option>
-									<option value="">Red</option>
-									<option value="">Blue</option>
+								<label for="intero_mechanism_color">Mechanism color</label>
+								<select id="intero_mechanism_color" name="intero_mechanism_color">
+									<option value="" disabled>White</option>
+									<option value="White">White</option>
+									<option value="Red">Red</option>
+									<option value="Blue">Blue</option>
 								</select>
 							</div>
 
