@@ -1,8 +1,8 @@
 <?php
-class intero_product_single_widget extends \Elementor\Widget_Base {
+class intero_product_single_widget2 extends \Elementor\Widget_Base {
 
 	public function get_name() {
-		return 'intero_product_single_widget';
+		return 'intero_product_single_widget2';
 	}
 
 	public function get_title() {
@@ -97,41 +97,46 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 							<div>
 								<label for="category">SELECT A CATEGORY</label>
-
-								<input type="text" value="<?php echo single_term_title();?>" disabled>
+								<select id="category">
+									<option value="">Category Sample 1</option>
+									<option value="">Category Sample 2</option>
+									<option value="">Category Sample 3</option>
+									<option value="">Category Sample 4</option>
+									<option value="">Category Sample 5</option>
+									<option value="">Category Sample 6</option>
+									<option value="">Category Sample 7</option>
+								</select>
 							</div>
 
 							<div>
 								<label for="collect_list">Collection List</label>
-								<?php
-									$category = get_queried_object();
-									$category_slug = $category->slug;
-
-									$args = array(
-										'taxonomy'     => 'product_cat',
-										'hierarchical' => 1,
-										'parent'       => get_term_by( 'slug', $category_slug, 'product_cat' )->term_id,
-										'hide_empty'   => 0
-									);
-									
-									$subcategories = get_terms( $args );
-									
-									if ( $subcategories ) {
-										echo '<ul id="collect_list">';
-									
-										foreach ( $subcategories as $subcategory ) {
-											echo '<li><a href="' . get_term_link( $subcategory ) . '">' . $subcategory->name . '</a></li>';
-										}
-									
-										echo '</ul>';
-									}
-								?>
-								
+								<select id="collect_list">
+									<option value="">Category Sample 1</option>
+									<option value="">Category Sample 2</option>
+									<option value="">Category Sample 3</option>
+									<option value="">Category Sample 4</option>
+									<option value="">Category Sample 5</option>
+									<option value="">Category Sample 6</option>
+									<option value="">Category Sample 7</option>
+								</select>
 							</div>
 
 							<div class="intero-color-variation">
 								<?php 
+									if ($product->is_type('variable')) {
+
+										$variations = $product->get_available_variations();
 									
+										foreach ($variations as $variation) {
+											$variation_id = $variation['variation_id'];
+											$variation_data = $variation['attributes'];
+											$variation_image = wp_get_attachment_image_src($variation['image_id'], 'full');
+											$variation_name = '';
+											foreach ($variation_data as $key => $value) {
+												$taxonomy = str_replace('attribute_', '', $key);
+												$term = get_term_by('slug', $value, $taxonomy);
+												$variation_name =  $term->name;
+											}
 								?>
 								<div>
 									<img src="<?php echo $variation_image[0];?>" alt="">
@@ -142,7 +147,9 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 									</a>
 								</div>
 								<?php
-										
+											
+										}
+									}
 								?>
 							</div>
 
