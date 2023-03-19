@@ -38,13 +38,16 @@ html {
     height: 125px !important;
     object-fit: cover;
 }
+.intero-color-variation > div {
+    position: relative;
+}
 .intero-select-optionR > div {
     margin-bottom: 20px;
 }
 .intero-select-optionR > div:last-child {
     margin-bottom: 0;
 }
-.intero-select-optionR a {
+.intero-select-optionR .intero_btn1 {
     display: block;
     position: relative;
     padding: 8px 0;
@@ -53,10 +56,10 @@ html {
     background: #000;
     text-align: center;
 }
-.intero_var_select a {
+.intero_var_select .intero_btn1 {
     background: #e31e24;
 }
-.intero-select-optionR a input[type='radio'] {
+.intero-select-optionR .intero_btn1 input[type='radio'] {
 	position: absolute;
 	opacity: 0;
 	top: 0;
@@ -174,4 +177,77 @@ html {
 	height: 50px !important;
 	margin-right: 10px;
 	object-fit: cover;
+}
+.intero_top_arrow_text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.intero_top_arrow_text img {
+    width: 16px;
+    height: 16px;
+}
+.intero_combo {
+	color: #e31e24;
+	font-size: 15px;
+	margin-left: 8px;
+}
+.intero_wishlist {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.intero_wishlist a {
+    background: transparent !important;
+    padding: 0 !important;
+}
+.intero_wishlist > div {
+    margin: 0;
+}
+.intero_wishlist i,
+.intero_wishlist img {
+    margin: 0 !important;
+}
+.intero_wishlist img {
+    height: 25px !important;
+}
+
+/* popup */
+#intero_popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: #000000a1;
+	z-index: 999;
+    display: none;
+}
+#intero_popup.show {
+    display: block;
+}
+.intero_popup_cross a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    font-size: 21px;
+    background: #e31e24;
+	color: #fff;
+	font-weight: 600;
+}
+.intero-container2 {
+    background: #fff;
+    padding: 20px 100px;
+    overflow-y: scroll;
+    height: 100vh
 }
