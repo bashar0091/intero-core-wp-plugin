@@ -1,11 +1,22 @@
 /* css code here  */
+html {
+  scroll-behavior: smooth;
+}
 .intero-container label {
     display: block;
 }
 .intero-container input,
 .intero-container select {
     width: 100%;
-    min-width: 100%;
+	min-width: 100%;
+	border-radius: 0 !important;
+	height: 45px;
+	border-color: #a8a8a8 !important;
+	outline: none !important;
+	margin-top: 5px;
+}
+.intero-container textarea {
+	border-color: #a8a8a8 !important;
 }
 .intero-container img {
     width: 100%;
@@ -61,6 +72,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 30px;
+	margin: 30px 0;
 }
 .intero-input-col3 {
 	display: grid;
@@ -88,13 +100,78 @@
 }
 .intero_product_img_thumbnail .intero-product-price {
 	position: absolute;
-    top: 0;
-    left: 0;
-    background: #e31e24;
-    padding: 8px 0;
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-    min-width: 70px;
-    text-align: center;
+	top: 0;
+	left: 0;
+	padding: 20px;
+	font-size: 18px;
+	font-weight: 600;
+	min-width: 70px;
+}
+.intero_product_img_thumbnail .intero-product-price h4 {
+	font-size: 18px;
+	font-weight: 600;
+    margin-bottom: 10px;
+}
+.intero_product_img_thumbnail .intero-product-price h2 span {
+	color: #e31e24;
+	font-size: 30px;
+	font-weight: 600;
+	display: inline-block;
+	margin-right: 10px;
+}
+.intero_product_img_thumbnail .intero-product-price h2 del {
+	font-size: 18px;
+	font-weight: 300;
+	color: #757575;
+}
+.intero_product_zoom {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.intero_product_zoom img {
+    width: 32px;
+    height: 32px !important;
+}
+.intero_btn{
+	display: block;
+	position: relative;
+	padding: 13px 0;
+	color: #fff;
+	text-transform: uppercase;
+	background: #000;
+	text-align: center;
+	transition: 0.3s;
+}
+.intero_btn:hover {
+	background: #e31e24;
+}
+.intero_note_text {
+	margin-top: 25px;
+}
+.intero_num_field {
+	display: flex;
+}
+.intero_num_field div:first-child {
+	margin-right: 10px;
+}
+.intero_num_field div:first-child span {
+	font-size: 50px;
+	color: #b3b2b2;
+}
+.intero_num_field div:last-child {
+	flex: 1;
+}
+.intero_small_product {
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+}
+.intero_small_product img {
+	width: 60px;
+	height: 50px !important;
+	margin-right: 10px;
+	object-fit: cover;
 }
