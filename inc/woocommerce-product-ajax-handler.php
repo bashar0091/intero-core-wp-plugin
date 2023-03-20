@@ -27,6 +27,6 @@ function my_ajax_function(){
             ),
         );
     }
- 
+
     wp_die();
 }

@@ -219,12 +219,14 @@ html {
 /* popup */
 #intero_popup {
 	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background: #000000a1;
+	top: 50%;
+	left: 50%;
+	height: 550px;
+	width: 1100px;
+	padding: 30px;
+	background: #EEE5E6;
 	z-index: 999;
+	transform: translate(-50%, -50%);
     display: none;
 }
 #intero_popup.show {
@@ -235,8 +237,8 @@ html {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 15px;
-    right: 15px;
+	bottom: 100%;
+	left: 100%;
     width: 40px;
     height: 40px;
     border-radius: 100px;
@@ -244,12 +246,20 @@ html {
     background: #e31e24;
 	color: #fff;
 	font-weight: 600;
+	transform: translate(0px, 13px);
 }
-.intero-container2 {
-    background: #fff;
-    padding: 20px 100px;
-    overflow-y: scroll;
-    height: 100vh
+.intero_popup_cross span {
+	background: #fff;
+	width: 22px;
+	height: 2px;
+	text-align: center;
+	position: absolute;
+}
+.intero_popup_cross span:first-child{
+	transform: rotate(45deg);
+}
+.intero_popup_cross span:last-child{
+	transform: rotate(-45deg);
 }
 .separator,
 .view-wishlist,
@@ -258,4 +268,21 @@ html {
 }
 .delete_item.button.alt {
 	font-size: 0 !important;
+}
+.intero_product_img.intero_product_img2 {
+	height: 489px !important;
+}
+.intero-container2{
+	height: 490px;
+	background: #fff;
+}
+.intero-color-variation2 {
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+.intero-select-optionR2 {
+	margin-right: 20px;
+}
+.intero_col_combo1 {
+	margin-top: 6px;
 }

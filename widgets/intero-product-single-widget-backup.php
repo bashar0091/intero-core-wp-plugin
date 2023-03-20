@@ -200,37 +200,9 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();	
 
 		$product = wc_get_product();
+
+		$singleId = get_the_ID();
 	?>
-
-		<div id="app"></div>
-		
-		<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-		<script>
-
-			jQuery(document).ready(function($) {
-				$('.my-button').click(function() {
-					var product_id = $(this).data('product-id');
-					jQuery.ajax({
-						type: 'POST',
-						url: '<?php echo esc_url(admin_url("admin-ajax.php")); ?>',
-						data: {
-							action: 'my_ajax_action',
-							product_id: product_id,
-						},
-						success: function(response) {
-							var data = JSON.parse(response);
-							var productPrice = data.product_price;
-							jQuery('.intero_top_arrow_text').text(productPrice);
-						},
-						error: function(xhr, status, error){
-							console.log(xhr.responseText);
-							console.log(status);
-							console.log(error);
-						}
-					});
-				});
-			});
-		</script>
 
 		<?php
 			if ($product->is_type('variable')) {
@@ -265,8 +237,8 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						<div class="intero-product-price">
 							<h4>Kaina su PVM nuo</h4>
 							<h2>
-								<span><?php echo $thumPrice;?>$</span>
-								<del><?php echo $thumRegularPrice;?>$</del></sub>
+								<span class="intero_main_price"><?php echo $thumPrice;?>$</span>
+								<del class="intero_regular_price"><?php echo $thumRegularPrice;?>$</del></sub>
 							</h2>
 						</div>
 						<img class="intero_product_img" src="<?php echo $thumImage;?>" alt="product-image">
@@ -312,11 +284,11 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 								</div>
 								
 								<div>
-									<label for="collect_list"><?php echo $settings['collection_text']?></label>
-									<select id="collect_list" onchange="window.location.href=this.value;">
+									<label for="collect_list"><?php echo $settings['collection_text'];?></label>
+									<select id="collect_list" onchange="collectionId(this.value)">
 									<?php 
 										$product_slugOut = $product->get_slug();
-										
+
 										$args = array(
 											'post_type' => 'product',
 											'tax_query' => array(
@@ -337,12 +309,13 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 											
 											$product_slugIn = get_post_field( 'post_name', get_the_ID() );
 									?>
-										<option value='<?php echo get_the_permalink();?>' <?php echo $product_slugOut == $product_slugIn ? 'selected' : ''; ?>><?php echo get_the_title();?></option>
+										<option value="<?php echo get_the_ID();?>" <?php echo $singleId == get_the_ID() ? 'selected' : ''?> ><?php echo get_the_title();?></option>
 									<?php 
 											}
 										}
 									?>
 									</select>
+
 								</div>
 							</div>
 						</div>
@@ -497,6 +470,82 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 			
 		</section>
 
+		<script>
+			function collectionId(product__Id) {
+				var product_id = product__Id;
+				jQuery.ajax({
+					type: 'POST',
+					url: '<?php echo esc_url(admin_url("admin-ajax.php")); ?>',
+					data: {
+						action: 'my_ajax_action',
+						product_id: product_id,
+					},
+					success: function(response) {
+						var data = JSON.parse(response);
+						var printFirstPrice = data.printFirstPrice;
+						var printFirstRegularPrice = data.printFirstRegularPrice;
+						var printFirstImg = data.printFirstImg;
+						var printFirstName = data.printFirstName;
+
+						jQuery('.intero_main_price').text(`${printFirstPrice}$`);
+						jQuery('.intero_regular_price').text(`${printFirstRegularPrice}$`);
+						jQuery('.intero_product_img').attr('src', printFirstImg);
+						jQuery('.intero_small_product img').attr('src', printFirstImg);
+						jQuery('.intero_small_product span').text(printFirstName);
+
+						var variations = data.product_variation;
+						jQuery('.intero-color-variation > div').remove();
+
+						for (var i = 0; i < variations.length; i++) {
+							var variation = variations[i];
+							
+							var varProductId = variation.variation_id;
+							var varprice = variation.display_price;
+							var varregular_price = variation.display_regular_price;
+							var image_url = variation.image.url;
+							var varName = variation.attributes.attribute_pa_quantity;
+
+							// Display the variation data
+							jQuery('.intero-color-variation').append(
+								`
+								<div class="${variations[0].variation_id == varProductId ? 'intero_var_select' : ''}">
+									<input type="hidden" value="${varprice}" class="intero_product_price">
+									<input type="hidden" value="${varregular_price}" class="intero_product_price_regular">
+									<div class="intero_wishlist">
+										<?php 
+											$product_id = '${varProductId}'; 
+											echo $product_id;
+											$wishtList = do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product_id . '"]');
+											if($wishtList) {
+												echo $wishtList;
+											}
+										?>
+									</div>
+									<img class="intero_var_product_img" src="${image_url}"
+										alt="">
+									<span class="intero_var_name">${varName}</span>
+									<a href="javascript:void(0)" class="intero_btn1">
+										<input type="radio" name="variation_id" value="1184">
+										<span class="intero_color_choose_text">${variations[0].variation_id == varProductId ? 'Selected' : 'Choose'}</span>
+									</a>
+								</div>
+								`
+							);
+						}
+
+						runCollationCode();
+
+						var interWishlistGet2 = jQuery('.intero_var_select .intero_wishlist').html();
+						jQuery('.intero_product_img_thumbnail .intero_wishlist').html(interWishlistGet2);
+					},
+					error: function(xhr, status, error){
+						console.log(xhr.responseText);
+						console.log(status);
+						console.log(error);
+					}
+				});
+			};
+		</script>
 		<?php
 	}
 }
