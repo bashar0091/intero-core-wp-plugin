@@ -245,12 +245,12 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					</div>
 
 					<!-- option field  -->
-					<div class="intero-select-optionR intero-select-optionR2">
+					<div class="intero-select-optionR">
 						<a href="#intero1" class="intero_top_arrow_text">
 							Atlikitie žingsnius ir gaukite pasiūlymą
 							<img src="<?php echo plugin_dir_url( __FILE__ ) . '../assets/images/bottom-arrow.png'?>" alt="">
 						</a>
-						<div id="intero_col_combo" class="intero_col_combo1">
+						<div id="intero_col_combo">
 							<div class="intero_num_field">
 								<div>
 									<span>1</span>
@@ -498,8 +498,8 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						</div>
 
 						<!-- option field  -->
-						<div class="intero-select-optionR">
-							<div id="intero_col_combo">
+						<div class="intero-select-optionR intero-select-optionR2">
+							<div id="intero_col_combo"  class="intero_col_combo1">
 								<div class="intero_num_field">
 									<div>
 										<span>1</span>
