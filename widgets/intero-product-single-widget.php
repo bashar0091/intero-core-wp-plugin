@@ -485,10 +485,13 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						var printFirstPrice = data.printFirstPrice;
 						var printFirstRegularPrice = data.printFirstRegularPrice;
 						var printFirstImg = data.printFirstImg;
+						var printFirstName = data.printFirstName;
 
 						jQuery('.intero_main_price').text(`${printFirstPrice}$`);
 						jQuery('.intero_regular_price').text(`${printFirstRegularPrice}$`);
 						jQuery('.intero_product_img').attr('src', printFirstImg);
+						jQuery('.intero_small_product img').attr('src', printFirstImg);
+						jQuery('.intero_small_product span').text(printFirstName);
 
 						var variations = data.product_variation;
 						jQuery('.intero-color-variation > div').remove();
@@ -531,10 +534,8 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 						runCollationCode();
 
-						jQuery('.intero_wishlist a').click(function() {
-							var interWishlistGet2 = jQuery('.intero_var_select .intero_wishlist').html();
-							jQuery('.intero_product_img_thumbnail .intero_wishlist').html(interWishlistGet2);
-						});
+						var interWishlistGet2 = jQuery('.intero_var_select .intero_wishlist').html();
+						jQuery('.intero_product_img_thumbnail .intero_wishlist').html(interWishlistGet2);
 					},
 					error: function(xhr, status, error){
 						console.log(xhr.responseText);
