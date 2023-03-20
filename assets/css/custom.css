@@ -251,3 +251,11 @@ html {
     overflow-y: scroll;
     height: 100vh
 }
+.separator,
+.view-wishlist,
+#yith-wcwl-popup-message {
+	display: none !important;
+}
+.delete_item.button.alt {
+	font-size: 0 !important;
+}

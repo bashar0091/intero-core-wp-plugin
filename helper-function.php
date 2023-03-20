@@ -5,6 +5,9 @@
 // extra field include 
 require_once('inc/woocommerce-product-extra-field.php');
 
+// ajax handler include 
+require_once('inc/woocommerce-product-ajax-handler.php');
+
 // css and js file include 
 function my_plugin_enqueue_styles() {
 
