@@ -309,12 +309,12 @@ html {
 }
 
 /* responsive css */
-@media (max-width: 767px) {
+@media (max-width: 1199px) {
 	.intero-col2 {
 		grid-template-columns: 1fr;
 	}
-	.intero-color-variation {
-		grid-template-columns: 1fr 1fr;
+	.intero-color-variation2 {
+		grid-template-columns: 1fr 1fr 1fr;
 	}
 	.intero-input-col3 {
 		grid-template-columns: 1fr;
@@ -334,5 +334,42 @@ html {
 		height: 100%;
 		width: 100%;
 		transform: inherit;
+	}
+	.intero-color-variation {
+		max-height: inherit;
+		overflow-y: inherit;
+	}
+	.intero-select-optionR2 {
+		margin-right: 0;
+	}
+	.intero_popup_cross a {
+		top: 0;
+		right: 0;
+		left: inherit;
+		bottom: inherit;
+		transform: inherit;
+		z-index: 999;
+	}
+	.intero-container2 {
+		height: 93vh;
+		overflow-y: scroll;
+	}
+	.intero-select-optionR2 {
+		padding: 10px;
+	}
+	#intero_popup {
+		padding-top: 36px;
+	}
+}
+@media (max-width: 767px) {
+	#intero_popup {
+		padding: 10px;
+		padding-top: 36px;
+	}
+	.intero-color-variation {
+		grid-template-columns: 1fr 1fr;
+	}
+	.intero-right-btn button {
+		margin-bottom: 10px;
 	}
 }

@@ -41,7 +41,8 @@ runCollationCode();
 // product image light box js 
 lightbox.option({
     'resizeDuration': 200,
-    'wrapAround': true
+    'wrapAround': true,
+    'fitImagesInViewport' : true,
 })
 
 // popup code here 
