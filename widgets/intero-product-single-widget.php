@@ -222,6 +222,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				<!-- intero image option left right grid  -->
 				<div class="intero-col2">
 					<div class="intero_product_img_thumbnail">
+						<div class="loading-animation"><img src="https://i.gifer.com/ZZ5H.gif"></div>
 						<a class="intero_product_zoom" href="<?php echo $thumImage;?>" data-lightbox="product-image">
 							<img src="<?php echo plugin_dir_url( __FILE__ ) . '../assets/images/zoom.png'?>" alt="zoom">
 						</a>
@@ -319,55 +320,58 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 								</div>
 							</div>
 						</div>
+						
+						<div style="position: relative;">
+							<div class="loading-animation"><img src="https://i.gifer.com/ZZ5H.gif"></div>
+							<div class="intero-color-variation">
+								<?php 
+									if ($product->is_type('variable')) {
 
-						<div class="intero-color-variation">
-							<?php 
-								if ($product->is_type('variable')) {
+										$variations = $product->get_available_variations();
 
-									$variations = $product->get_available_variations();
-
-									foreach ($variations as $variation) {
-										$variation_id = $variation['variation_id'];
-										$variation_data = $variation['attributes'];
-										$variation_image = wp_get_attachment_image_src($variation['image_id'], 'full');
-										$variation_price = $variation['display_price'];
-										$variation_price_regular = $variation['display_regular_price'];
-										$variation_name = '';
-										foreach ($variation_data as $key => $value) {
-											$taxonomy = str_replace('attribute_', '', $key);
-											$term = get_term_by('slug', $value, $taxonomy);
-											$variation_name =  $term->name;
+										foreach ($variations as $variation) {
+											$variation_id = $variation['variation_id'];
+											$variation_data = $variation['attributes'];
+											$variation_image = wp_get_attachment_image_src($variation['image_id'], 'full');
+											$variation_price = $variation['display_price'];
+											$variation_price_regular = $variation['display_regular_price'];
+											$variation_name = '';
+											foreach ($variation_data as $key => $value) {
+												$taxonomy = str_replace('attribute_', '', $key);
+												$term = get_term_by('slug', $value, $taxonomy);
+												$variation_name =  $term->name;
+											}
+								?>
+								<div class="<?php echo $variations[0]['variation_id'] == $variation_id ? 'intero_var_select' : '';?>">
+									<input type="hidden" value="<?php echo $variation_id;?>" class="intero_product_id">
+									<input type="hidden" value="<?php echo $variation_price;?>" class="intero_product_price">
+									<input type="hidden" value="<?php echo $variation_price_regular;?>" class="intero_product_price_regular">
+									<div class="intero_wishlist">
+										<?php 
+										$product_id = $variation_id; 
+										$wishtList = do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product_id . '"]');
+										if($wishtList) {
+											echo $wishtList;
 										}
-							?>
-							<div class="<?php echo $variations[0]['variation_id'] == $variation_id ? 'intero_var_select' : '';?>">
-								<input type="hidden" value="<?php echo $variation_id;?>" class="intero_product_id">
-								<input type="hidden" value="<?php echo $variation_price;?>" class="intero_product_price">
-								<input type="hidden" value="<?php echo $variation_price_regular;?>" class="intero_product_price_regular">
-								<div class="intero_wishlist">
-									<?php 
-									$product_id = $variation_id; 
-									$wishtList = do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product_id . '"]');
-									if($wishtList) {
-										echo $wishtList;
-									}
-									?>
-								</div>
-								<img class="intero_var_product_img" src="<?php echo $variation_image[0];?>" alt="">
-								<span class="intero_var_name"><?php echo $variation_name;?></span>
-								<a href="javascript:void(0)" class="intero_btn1">
-									<input type="radio" name="variation_id" value="<?php echo $variation_id;?>">
-									<span class="intero_color_choose_text">
-										<?php
-											echo $variations[0]['variation_id'] == $variation_id ? 'Selected' : 'Choose';
 										?>
-									</span>
-								</a>
-							</div>
-							<?php
-										
+									</div>
+									<img class="intero_var_product_img" src="<?php echo $variation_image[0];?>" alt="">
+									<span class="intero_var_name"><?php echo $variation_name;?></span>
+									<a href="javascript:void(0)" class="intero_btn1">
+										<input type="radio" name="variation_id" value="<?php echo $variation_id;?>">
+										<span class="intero_color_choose_text">
+											<?php
+												echo $variations[0]['variation_id'] == $variation_id ? 'Selected' : 'Choose';
+											?>
+										</span>
+									</a>
+								</div>
+								<?php
+											
+										}
 									}
-								}
-							?>
+								?>
+							</div>
 						</div>
 
 						<!-- <div class="intero-left-button">
@@ -411,10 +415,11 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 							<input type="text" name="input5" id="input5" placeholder="<?php echo $settings['multiple_input_5']?>" required>
 						</div>
 
-						<div>
+						<div style="position: relative;">
 							<label for="null"><?php echo $settings['multiple_input_6']?> <a href="#intero_col_combo" class="intero_combo">Pasirinkti</a></label>
 							<div class="intero_small_product">
-								<img src="<?php echo $thumImage;?>" alt="product-image">
+								<div class="loading-animation loading-animation2"><img src="https://i.gifer.com/ZZ5H.gif"></div>
+								<img class="smImg" src="<?php echo $thumImage;?>" alt="product-image">
 								<span><?php echo $thumName;?></span>
 							</div>
 						</div>
@@ -604,7 +609,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 									<img class="intero_var_product_img" src="<?php echo $variation_image[0];?>" alt="">
 									<span class="intero_var_name"><?php echo $variation_name;?></span>
 									<a href="javascript:void(0)" class="intero_btn1">
-										<input type="radio" name="variation_id" value="<?php echo $variation_id;?>">
+										<input type="radio" name="variation_id" value="<?php echo $variation_id;?>" <?php echo $variations[0]['variation_id'] == $variation_id ? 'Checked' : '';?>>
 										<span class="intero_color_choose_text">
 											<?php
 												echo $variations[0]['variation_id'] == $variation_id ? 'Selected' : 'Choose';
@@ -627,8 +632,9 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				</form>
 			</div>
 		</section>
-
+		
 		<script>
+			jQuery('.loading-animation').hide();
 			function collectionId(product__Id) {
 				var product_id = product__Id;
 				jQuery.ajax({
@@ -638,7 +644,11 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						action: 'my_ajax_action',
 						product_id: product_id,
 					},
+					beforeSend: function() {
+						jQuery('.loading-animation').show();
+					},
 					success: function(response) {
+						jQuery('.loading-animation').hide();
 						var data = JSON.parse(response);
 						var printFirstPrice = data.printFirstPrice;
 						var printFirstRegularPrice = data.printFirstRegularPrice;
@@ -648,7 +658,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						jQuery('.intero_main_price').text(`${printFirstPrice}$`);
 						jQuery('.intero_regular_price').text(`${printFirstRegularPrice}$`);
 						jQuery('.intero_product_img').attr('src', printFirstImg);
-						jQuery('.intero_small_product img').attr('src', printFirstImg);
+						jQuery('.intero_small_product .smImg').attr('src', printFirstImg);
 						jQuery('.intero_small_product span').text(printFirstName);
 
 						var variations = data.product_variation;

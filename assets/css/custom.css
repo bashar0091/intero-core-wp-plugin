@@ -32,6 +32,7 @@ html {
     gap: 30px;
     max-height: 198px;
     overflow-y: scroll;
+	position: relative;
 }
 .intero-color-variation img {
     width: 100%;
@@ -285,6 +286,26 @@ html {
 }
 .intero_col_combo1 {
 	margin-top: 6px;
+}
+.loading-animation {
+	position: absolute !important;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+}
+.loading-animation img {
+	width: 60px !important;
+	height: 60px !important;
+}
+.loading-animation.loading-animation2 {
+	top: 50%;
+	left: 0;
+	transform: inherit;
+}
+.loading-animation.loading-animation2 img {
+	width: 40px !important;
+	height: 40px !important;
 }
 
 /* responsive css */

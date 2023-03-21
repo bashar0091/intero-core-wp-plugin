@@ -25,7 +25,7 @@ function runCollationCode() {
         </div>
         `);
 
-        jQuery('.intero_small_product img').attr('src', intero_var_img_get);
+        jQuery('.intero_small_product .smImg').attr('src', intero_var_img_get);
         jQuery('.intero_small_product span').text(intero_color_variation_name);
 
         var interWishlistGet = jQuery('.intero_var_select .intero_wishlist').html();
