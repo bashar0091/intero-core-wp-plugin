@@ -30,6 +30,9 @@ function runCollationCode() {
 
         var interWishlistGet = jQuery('.intero_var_select .intero_wishlist').html();
         jQuery('.intero_product_img_thumbnail .intero_wishlist').html(interWishlistGet);
+
+        var productId = jQuery(this).find('input').val();
+        jQuery('.addCartBtn').val(productId);
     });
 };
 runCollationCode();

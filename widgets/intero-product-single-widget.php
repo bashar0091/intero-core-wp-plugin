@@ -625,7 +625,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 							</div>
 
 							<div>
-								<button type="submit" name="add-to-cart" value="<?php echo $product->get_id(); ?>">ADD TO CART</button>
+								<button type="submit" class="addCartBtn" name="add-to-cart" value="<?php echo $thumVarId; ?>">ADD TO CART</button>
 							</div>
 						</div>
 					</div>
@@ -654,12 +654,14 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						var printFirstRegularPrice = data.printFirstRegularPrice;
 						var printFirstImg = data.printFirstImg;
 						var printFirstName = data.printFirstName;
+						var printFirstID = data.printFirstID;
 
 						jQuery('.intero_main_price').text(`${printFirstPrice}$`);
 						jQuery('.intero_regular_price').text(`${printFirstRegularPrice}$`);
 						jQuery('.intero_product_img').attr('src', printFirstImg);
 						jQuery('.intero_small_product .smImg').attr('src', printFirstImg);
 						jQuery('.intero_small_product span').text(printFirstName);
+						jQuery('.addCartBtn').val(printFirstID);
 
 						var variations = data.product_variation;
 						jQuery('.intero-color-variation > div').remove();
@@ -692,7 +694,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 										alt="">
 									<span class="intero_var_name">${varName}</span>
 									<a href="javascript:void(0)" class="intero_btn1">
-										<input type="radio" name="variation_id" value="1184">
+										<input type="radio" name="variation_id" value="${varProductId}" ${variations[0].variation_id == varProductId ? 'Checked' : ''}>
 										<span class="intero_color_choose_text">${variations[0].variation_id == varProductId ? 'Selected' : 'Choose'}</span>
 									</a>
 								</div>

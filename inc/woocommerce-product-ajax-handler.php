@@ -16,6 +16,7 @@ function my_ajax_function(){
 		$showFirstRegularPrice = $variations[0]['display_regular_price'];
         $showFirstImg = $variations[0]['image']['url']; 
         $showFirstName = $variations[0]['attributes']['attribute_pa_quantity']; 
+        $showFirstID = $variations[0]['variation_id']; 
 
         echo json_encode(
             array(
@@ -24,6 +25,7 @@ function my_ajax_function(){
                 'printFirstImg' => $showFirstImg,
                 'printFirstName' => $showFirstName,
                 'product_variation' => $variations,
+                'printFirstID' => $showFirstID,
             ),
         );
     }
