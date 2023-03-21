@@ -357,15 +357,8 @@ html {
 	.intero-select-optionR2 {
 		padding: 10px;
 	}
-	#intero_popup {
-		padding-top: 36px;
-	}
 }
 @media (max-width: 767px) {
-	#intero_popup {
-		padding: 10px;
-		padding-top: 36px;
-	}
 	.intero-color-variation {
 		grid-template-columns: 1fr 1fr;
 	}
