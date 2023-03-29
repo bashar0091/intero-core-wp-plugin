@@ -23,6 +23,26 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 	protected function register_controls() {
 
+		$this->start_controls_section(
+			'general_setting_wrapper',
+			[
+				'label' => esc_html__( 'General Setting', 'intero' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+		$this->add_control(
+			'increment_show_off',
+			[
+				'label' => esc_html__( 'Price Countdown On/Off', 'intero' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Show', 'intero' ),
+				'label_off' => esc_html__( 'Hide', 'intero' ),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+		$this->end_controls_section();
+
 		// Content Tab Start1
 		$this->start_controls_section(
 			'text_change_wrapper',

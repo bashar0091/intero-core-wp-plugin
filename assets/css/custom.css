@@ -307,6 +307,33 @@ html {
 	width: 40px !important;
 	height: 40px !important;
 }
+.intero_product_img_thumbnail2 .intero-product-price {
+	position: relative;
+	flex: 1;
+	margin-left: 20px;
+}
+.intero_product_img_thumbnail.intero_product_img_thumbnail2 {
+	display: flex;
+}
+.increament_price {
+	position: relative;
+	margin: 20px;
+	margin-left: 0;
+}
+.increament_price button {
+	position: absolute;
+	padding: 0;
+	top: 0;
+	left: 100%;
+	width: 30px;
+	height: 23px;
+}
+.increament_price button:last-child{
+	top: 22px;
+}
+.increament_price input {
+	margin-top: 0;
+}
 
 /* responsive css */
 @media (max-width: 1199px) {

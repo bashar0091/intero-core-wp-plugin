@@ -251,7 +251,26 @@
         </div>
 
         <div class="intero-cart-button">
-            <div></div>
+            <div>
+                <?php if ($settings['increment_show_off'] == 'yes') {?>
+                <div class="intero_product_img_thumbnail intero_product_img_thumbnail2">
+                    <div class="increament_price">
+                        <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                        <button class="plus" type="button">+</button>
+                        <button class="minus" type="button">-</button>
+                    </div>
+
+                    <div class="intero-product-price">
+                        <h4><?php echo $settings['img_top_text'];?></h4>
+                        <h2>
+                            <span class="intero_main_price"><?php echo $thumPrice;?>$</span>
+                            <del class="intero_regular_price"><?php echo $thumRegularPrice;?>$</del></sub>
+                        </h2>
+                    </div>
+                </div>
+                <?php }?>
+            </div>
+          
             <div class="intero-right-btn">
                 <button class="intero_popup_btn inTeroBtn"><?php echo $settings['popup_btn_text'];?></button>
                 <button class="inTeroBtn" type="submit" value=""><?php echo $settings['crm_btn_text'];?></button>
