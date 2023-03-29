@@ -15,15 +15,16 @@ function runCollationCode() {
         var intero_color_variation_price = jQuery('.intero_var_select .intero_product_price').val();
         var intero_color_variation_price_regular = jQuery('.intero_var_select .intero_product_price_regular').val();
         var intero_color_variation_name = jQuery('.intero_var_select .intero_var_name').text();
-        var increament_num_field = jQuery('.increament_num_field').val();
+        var increament_num_field2 = jQuery('.increament_num_field').val();
+        var increament_num_field = jQuery('.intero_product_img_thumbnail2').attr('style');
 
-        if(increament_num_field < 0) {
+        if(increament_num_field  == "display: none;") {
             jQuery('.intero_product_img_thumbnail').append(`
             <div class="intero-product-price">
                 <h4>Kaina su PVM nuo</h4>
                 <h2>
-                    <span class="intero_main_price">${intero_color_variation_price * increament_num_field}$</span>
-                    <del class="intero_regular_price">${intero_color_variation_price_regular * increament_num_field}$</del></sub>
+                    <span class="intero_main_price">${intero_color_variation_price}$</span>
+                    <del class="intero_regular_price">${intero_color_variation_price_regular}$</del></sub>
                 </h2>
             </div>
             `);
@@ -32,8 +33,8 @@ function runCollationCode() {
             <div class="intero-product-price">
                 <h4>Kaina su PVM nuo</h4>
                 <h2>
-                    <span class="intero_main_price">${intero_color_variation_price}$</span>
-                    <del class="intero_regular_price">${intero_color_variation_price_regular}$</del></sub>
+                    <span class="intero_main_price">${intero_color_variation_price * increament_num_field2}$</span>
+                    <del class="intero_regular_price">${intero_color_variation_price_regular * increament_num_field2}$</del></sub>
                 </h2>
             </div>
             `);

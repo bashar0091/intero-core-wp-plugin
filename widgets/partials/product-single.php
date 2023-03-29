@@ -252,8 +252,7 @@
 
         <div class="intero-cart-button">
             <div>
-                <?php if ($settings['increment_show_off'] == 'yes') {?>
-                <div class="intero_product_img_thumbnail intero_product_img_thumbnail2">
+                <div class="intero_product_img_thumbnail intero_product_img_thumbnail2" <?php echo $settings['increment_show_off'] == 'yes' ? '' : 'style="display: none;"'?>>
                     <div class="increament_price">
                         <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
                         <button class="plus" type="button">+</button>
@@ -268,7 +267,6 @@
                         </h2>
                     </div>
                 </div>
-                <?php }?>
             </div>
           
             <div class="intero-right-btn">
