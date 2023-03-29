@@ -14,7 +14,6 @@
 <!-- template rendering here -->
 <section>
     <div class="intero-container">
-
         <!-- intero image option left right grid  -->
         <div class="intero-col2">
             <div class="intero_product_img_thumbnail">
@@ -254,7 +253,7 @@
             <div>
                 <div class="intero_product_img_thumbnail intero_product_img_thumbnail2" <?php echo $settings['increment_show_off'] == 'yes' ? '' : 'style="display: none;"'?>>
                     <div class="increament_price">
-                        <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                        <input type="number" step="1" min="1" max="" name="quantity" value="1" class="count increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric" disabled>
                         <button class="plus" type="button">+</button>
                         <button class="minus" type="button">-</button>
                     </div>
@@ -270,6 +269,7 @@
             </div>
           
             <div class="intero-right-btn">
+                <div class="loading-animation loading-animation2"><img src="https://i.gifer.com/ZZ5H.gif"></div>
                 <button class="intero_popup_btn inTeroBtn"><?php echo $settings['popup_btn_text'];?></button>
                 <button class="inTeroBtn" type="submit" value=""><?php echo $settings['crm_btn_text'];?></button>
             </div>

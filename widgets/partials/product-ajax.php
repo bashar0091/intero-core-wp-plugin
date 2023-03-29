@@ -2,6 +2,32 @@
     jQuery('.loading-animation').hide();
     function collectionId(product__Id) {
         var product_id = product__Id;
+
+        jQuery.ajax({
+        type: 'GET',
+        url: '<?php echo get_home_url() . "/index.php/wp-json/wp/v2/product/"?>' + product_id,
+        beforeSend: function() {
+            jQuery('.loading-animation').show();
+        },
+        success: function(response) {
+            var slug_ID = response.slug;
+            var dynamicURL = '<?php echo get_home_url() . "/product"?>/' + slug_ID;
+            jQuery.ajax({
+                type: 'GET',
+                url: dynamicURL,
+                success: function(response) {
+                    jQuery('body').html(response);
+                },
+            });
+
+        }
+        });
+    };
+
+
+    function collectionId2(product__Id) {
+        var product_id = product__Id;
+
         jQuery.ajax({
             type: 'POST',
             url: '<?php echo esc_url(admin_url("admin-ajax.php")); ?>',
@@ -74,11 +100,8 @@
 
                 jQuery(window).load();
             },
-            error: function(xhr, status, error){
-                console.log(xhr.responseText);
-                console.log(status);
-                console.log(error);
-            }
         });
+
     };
+    
 </script>

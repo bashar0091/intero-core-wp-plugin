@@ -1,4 +1,5 @@
 <section id="intero_popup">
+    <div class="loading-animation"><img src="https://i.gifer.com/ZZ5H.gif"></div>
     <div class="intero_popup_cross">
         <a href="javascript:void(0)">
             <span></span>
@@ -70,7 +71,7 @@
                             
                             <div>
                                 <label for="collect_list"><?php echo $settings['collection_text'];?></label>
-                                <select id="collect_list" onchange="collectionId(this.value)">
+                                <select id="collect_list" onchange="collectionId2(this.value)">
                                 <?php 
                                     $product_slugOut = $product->get_slug();
 
@@ -155,8 +156,13 @@
                         ?>
                     </div>
 
-                    <div>
-                        <button class="inTeroBtn" type="submit" class="addCartBtn" name="add-to-cart" value="<?php echo $thumVarId; ?>"><?php echo $settings['cart_btn_text'];?></button>
+                    <div class="popup_increament">
+                        <div class="increament_price">
+                            <input type="number" step="1" min="1" max="" name="quantity" value="1" class="count increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                            <button class="plus1" type="button">+</button>
+                            <button class="minus1" type="button">-</button>
+                        </div>
+                        <button type="submit" class="addCartBtn" name="add-to-cart" value="<?php echo $thumVarId; ?>"><?php echo $settings['cart_btn_text'];?></button>
                     </div>
                 </div>
             </div>

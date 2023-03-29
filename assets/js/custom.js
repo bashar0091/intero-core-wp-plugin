@@ -64,79 +64,67 @@ lightbox.option({
 // popup code here 
 var interoPopup = jQuery('#intero_popup')
 jQuery('.intero_popup_btn').click(function() {
-    interoPopup.addClass('show')
     jQuery('body').css('overflow', 'hidden');
+    jQuery.ajax({
+        type: 'GET',
+        url: window.location.href,
+        beforeSend: function() {
+            jQuery('.loading-animation.loading-animation2').show();
+        },
+        success: function(response) {
+            jQuery('.loading-animation').hide();
+            jQuery('body').html(response);
+            interoPopup.addClass('show')
+            jQuery('.increament_num_field').val(0);
+            jQuery('body').css('overflow', 'hidden');
+        }
+    });
 });
 jQuery('.intero_popup_cross a').click(function() {
-    location.reload();
+    jQuery.ajax({
+    type: 'GET',
+    url: window.location.href,
+    beforeSend: function() {
+        jQuery('.loading-animation').show();
+    },
+    success: function(response) {
+        jQuery('.loading-animation').hide();
+        jQuery('body').html(response);
+        jQuery('.increament_num_field').val(0);
+        jQuery('body').css('overflow', 'inherit');
+    }
+    });
 });
 
 
-/**
- * Increment and Decrement Quantity Buttons Functionality
- */
-jQuery(document).ready(function($) {
-    jQuery(document).on('click', '.plus, .minus', function(e) {
-        e.preventDefault();
-        var $button = $(this);
-        var oldValue = $button.parent().find('input[type="number"]').val();
-        var newVal;
+
+function increamentShow(select1, select2) {
+    jQuery(select1).click(function () {
         var price = jQuery('.intero_var_select .intero_product_price').val(); 
         var price2 = jQuery('.intero_var_select .intero_product_price_regular').val();
-        var $priceDisplay = $('.intero_main_price');
-        var $priceDisplay2 = $('.intero_regular_price');    
+        var $priceDisplay = jQuery('.intero_main_price');
+        var $priceDisplay2 = jQuery('.intero_regular_price');
     
-        if ($button.hasClass('plus')) {
-            newVal = parseFloat(oldValue) + 1;
-        } else {
-            if (oldValue > 1) {
-                newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 1;
-            }
+        var count = parseInt(jQuery('.increament_num_field').val()) + 1;
+        jQuery('.increament_num_field').val(count);
+    
+        $priceDisplay.text(`${price * count}$`);
+        $priceDisplay2.text(`${price2 * count}$`);
+    });
+    jQuery(select2).click(function () {
+        var price = jQuery('.intero_var_select .intero_product_price').val(); 
+        var price2 = jQuery('.intero_var_select .intero_product_price_regular').val();
+        var $priceDisplay = jQuery('.intero_main_price');
+        var $priceDisplay2 = jQuery('.intero_regular_price');
+    
+        var count = parseInt(jQuery('.increament_num_field').val()) - 1;
+        if (count < 1) {
+        count = 1;
         }
-    
-        $button.parent().find('input[type="number"]').val(newVal);
-    
-        // Update the price based on the new value of the input field
-        var newPrice = price * newVal;
-        var newPrice2 = price2 * newVal;
-        
-        $priceDisplay.text(`${newPrice}$`);
-        $priceDisplay2.text(`${newPrice2}$`);
+        jQuery('.increament_num_field').val(count);
+        $priceDisplay.text(`${price * count}$`);
+        $priceDisplay2.text(`${price2 * count}$`);
     });
-    
-
-    jQuery(document).ready(function($) {
-        jQuery(document).on('change keyup', 'input[type="number"]', function(e) {
-            var price = jQuery('.intero_var_select .intero_product_price').val(); 
-            var price2 = jQuery('.intero_var_select .intero_product_price_regular').val();
-            var $priceDisplay = $('.intero_main_price');
-            var $priceDisplay2 = $('.intero_regular_price');   
-            var $inputField = $(this);
-            var oldValue = $inputField.data('old-value');
-            var newVal = parseFloat($inputField.val());
-    
-            if (isNaN(newVal)) {
-                newVal = 1;
-                $inputField.val(newVal);
-            } else if (newVal < 1) {
-                newVal = 1;
-                $inputField.val(newVal);
-            }
-            
-            $inputField.data('old-value', newVal);
-    
-            // Update the price based on the new value of the input field
-            var newPrice = price * newVal;
-            var newPrice2 = price2 * newVal;
-            $priceDisplay.text(`${newPrice}$`);
-            $priceDisplay2.text(`${newPrice2}$`);
-        });
-        
-        // Set the initial old value for each input field
-        $('input[type="number"]').each(function() {
-            $(this).data('old-value', parseFloat($(this).val()));
-        });
-    });
-});
+}
+increamentShow('.plus', '.minus');
+increamentShow('.plus1', '.minus1');

@@ -93,6 +93,7 @@ html {
 }
 .intero-cart-button .intero-right-btn{
     text-align: right;
+	position: relative;
 }
 .intero_product_img_thumbnail img {
 	width: 100%;
@@ -333,6 +334,19 @@ html {
 }
 .increament_price input {
 	margin-top: 0;
+}
+.loading-animation.loading-animation2{
+	top: 0;
+	left: 50px;
+	transform: inherit
+}
+.popup_increament {
+	display: flex;
+	gap: 40px;
+}
+.popup_increament .increament_price {
+	flex: 1;
+	margin: 0;
 }
 
 /* responsive css */
