@@ -2,6 +2,7 @@
 function runCollationCode() {
     jQuery('.intero-color-variation .intero_btn1').click(function() {
         jQuery('.intero-color-variation > div').removeClass('intero_var_select');
+
         jQuery(this).parent().addClass('intero_var_select');
 
         jQuery('.intero_color_choose_text').text('Choose');
@@ -64,36 +65,12 @@ lightbox.option({
 // popup code here 
 var interoPopup = jQuery('#intero_popup')
 jQuery('.intero_popup_btn').click(function() {
+    interoPopup.addClass('show')
     jQuery('body').css('overflow', 'hidden');
-    jQuery.ajax({
-        type: 'GET',
-        url: window.location.href,
-        beforeSend: function() {
-            jQuery('.loading-animation.loading-animation2').show();
-        },
-        success: function(response) {
-            jQuery('.loading-animation').hide();
-            jQuery('body').html(response);
-            interoPopup.addClass('show')
-            jQuery('.increament_num_field').val(0);
-            jQuery('body').css('overflow', 'hidden');
-        }
-    });
 });
 jQuery('.intero_popup_cross a').click(function() {
-    jQuery.ajax({
-    type: 'GET',
-    url: window.location.href,
-    beforeSend: function() {
-        jQuery('.loading-animation').show();
-    },
-    success: function(response) {
-        jQuery('.loading-animation').hide();
-        jQuery('body').html(response);
-        jQuery('.increament_num_field').val(0);
-        jQuery('body').css('overflow', 'inherit');
-    }
-    });
+    interoPopup.removeClass('show')
+    jQuery('body').css('overflow', 'inherit');
 });
 
 

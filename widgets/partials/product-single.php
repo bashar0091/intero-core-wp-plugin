@@ -269,7 +269,6 @@
             </div>
           
             <div class="intero-right-btn">
-                <div class="loading-animation loading-animation2"><img src="https://i.gifer.com/ZZ5H.gif"></div>
                 <button class="intero_popup_btn inTeroBtn"><?php echo $settings['popup_btn_text'];?></button>
                 <button class="inTeroBtn" type="submit" value=""><?php echo $settings['crm_btn_text'];?></button>
             </div>
