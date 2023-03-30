@@ -118,7 +118,7 @@
                 
                 <div style="position: relative;">
                     <div class="loading-animation"><img src="https://i.gifer.com/ZZ5H.gif"></div>
-                    <div class="intero-color-variation">
+                    <div class="intero-color-variation1 intero-color-variation">
                         <?php 
                             if ($product->is_type('variable')) {
 

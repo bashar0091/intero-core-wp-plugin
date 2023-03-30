@@ -1,6 +1,6 @@
 // color variation choose button active/deactive and btn text changed and image changed
 function runCollationCode() {
-    jQuery('.intero-color-variation .intero_btn1').click(function() {
+    jQuery(document).on('click', '.intero-color-variation .intero_btn1', function() {
         jQuery('.intero-color-variation > div').removeClass('intero_var_select');
 
         jQuery(this).parent().addClass('intero_var_select');
@@ -50,6 +50,19 @@ function runCollationCode() {
 
         var productId = jQuery(this).find('input').val();
         jQuery('.addCartBtn').val(productId);
+    });
+
+    jQuery(document).on('click', '.intero-color-variation1 .intero_btn1', function() {
+        var interocolorvariation = jQuery('.intero-color-variation1').html();
+        jQuery('.intero-color-variation2').html(interocolorvariation);
+
+    });
+    jQuery(document).on('click', '.intero-color-variation2 .intero_btn1', function() {
+        jQuery('.intero-color-variation > div').removeClass('intero_var_select');
+        jQuery(this).parent().addClass('intero_var_select');
+
+        var interocolorvariation = jQuery('.intero-color-variation2').html();
+        jQuery('.intero-color-variation1').html(interocolorvariation);
     });
 };
 runCollationCode();
