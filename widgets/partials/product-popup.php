@@ -158,7 +158,7 @@
 
                     <div class="popup_increament">
                         <div class="increament_price">
-                            <input type="number" step="1" min="1" max="" name="quantity" value="1" class="count increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                            <input type="number" step="1" min="1" max="" name="quantity" value="1" class="count increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric" disabled>
                             <button class="plus1" type="button">+</button>
                             <button class="minus1" type="button">-</button>
                         </div>

@@ -74,6 +74,8 @@
                 jQuery('.intero_product_img_thumbnail .intero_wishlist').html(interWishlistGet2);
 
                 jQuery(window).load();
+
+                jQuery('.count').val(1);
             },
         });
 
@@ -154,6 +156,8 @@
                 jQuery('.intero_product_img_thumbnail .intero_wishlist').html(interWishlistGet2);
 
                 jQuery(window).load();
+
+                jQuery('.count').val(1);
             },
         });
 
