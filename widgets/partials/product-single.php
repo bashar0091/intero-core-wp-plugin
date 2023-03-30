@@ -253,7 +253,7 @@
             <div>
                 <div class="intero_product_img_thumbnail intero_product_img_thumbnail2" <?php echo $settings['increment_show_off'] == 'yes' ? '' : 'style="display: none;"'?>>
                     <div class="increament_price">
-                        <input type="number" step="1" min="1" max="" name="quantity" value="1" class="count increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric" disabled>
+                        <input type="number" step="1" min="1" max="" name="quantity" value="1" class="count increament_num_field input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
                         <button class="plus" type="button">+</button>
                         <button class="minus" type="button">-</button>
                     </div>
