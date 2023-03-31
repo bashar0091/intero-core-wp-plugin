@@ -569,7 +569,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				<div class="intero_product_img_thumbnail">
 					<div class="loading-animation"><img src="https://i.gifer.com/ZZ5H.gif"></div>
 					<a class="intero_product_zoom" href="<?php echo $thumImage;?>" data-lightbox="product-image">
-						<img src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/images/zoom.png'?>" alt="zoom">
+						<img src="<?php echo plugin_dir_url( __FILE__ ) . '../assets/images/zoom.png'?>" alt="zoom">
 					</a>
 					<div class="intero_wishlist">
 						<?php 
@@ -840,7 +840,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				<div class="intero-col2">
 					<div class="intero_product_img_thumbnail">
 						<a class="intero_product_zoom" href="<?php echo $thumImage;?>" data-lightbox="product-image">
-							<img src="<?php echo plugin_dir_url( __FILE__ ) . '../../assets/images/zoom.png'?>" alt="zoom">
+							<img src="<?php echo plugin_dir_url( __FILE__ ) . '../assets/images/zoom.png'?>" alt="zoom">
 						</a>
 						<div class="intero_wishlist">
 							<?php 
