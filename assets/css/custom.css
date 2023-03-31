@@ -79,9 +79,20 @@ html {
 	margin: 30px 0;
 }
 .intero-input-col3 {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	display: flex;
+	flex-wrap: wrap;
 	gap: 30px;
+}
+.intero-input-col3 .col1 {
+	width: 100%;
+}
+.intero-input-col3 .col2 {
+	width: 40%;
+	flex: auto;
+}
+.intero-input-col3 .col3 {
+	width: 30%;
+	flex: auto;
 }
 .intero-option-bottom {
     margin-top: 25px;
@@ -348,6 +359,9 @@ html {
 	flex: 1;
 	margin: 0;
 }
+.interExtraTextarea {
+	display: none !important;
+}
 
 /* responsive css */
 @media (max-width: 1199px) {
@@ -398,6 +412,9 @@ html {
 	.intero-select-optionR2 {
 		padding: 10px;
 	}
+	.intero-input-col3 .col3 {
+		width: 40%;
+	}
 }
 @media (max-width: 767px) {
 	.intero-color-variation {
@@ -405,5 +422,11 @@ html {
 	}
 	.intero-right-btn button {
 		margin-bottom: 10px;
+	}
+	.intero-input-col3 .col2 {
+		width: 100%;
+	}
+	.intero-input-col3 .col3 {
+		width: 100%;
 	}
 }

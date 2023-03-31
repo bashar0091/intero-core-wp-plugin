@@ -6,7 +6,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Intero Product Single Widget', 'intero' );
+		return esc_html__( 'Elementor Input Fields+ for WooCommerce', 'intero' );
 	}
 
 	public function get_icon() {
@@ -18,7 +18,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 	}
 
 	public function get_keywords() {
-		return [ 'intero', 'product', 'product single' ];
+		return [ 'intero', 'WooCommerce', 'product', 'product single' ];
 	}
 
 	protected function register_controls() {
@@ -38,7 +38,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				'label_on' => esc_html__( 'Show', 'intero' ),
 				'label_off' => esc_html__( 'Hide', 'intero' ),
 				'return_value' => 'yes',
-				'default' => '',
+				'default' => 'yes',
 			]
 		);
 		$this->end_controls_section();
@@ -110,92 +110,197 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
+
 		$this->add_control(
-			'multiple_input_1',
+			'multiple_input_list',
 			[
-				'label' => esc_html__( 'Input #1', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Patalpų plotas m2', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_2',
-			[
-				'label' => esc_html__( 'Input #2', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Patalpų skaičius', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_3',
-			[
-				'label' => esc_html__( 'Input #3', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Esamas pagrindas', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_4',
-			[
-				'label' => esc_html__( 'Input #4', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Vardas', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_5',
-			[
-				'label' => esc_html__( 'Input #5', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Pavardė', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_6',
-			[
-				'label' => esc_html__( 'Input #6', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Spalva', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_7',
-			[
-				'label' => esc_html__( 'Input #7', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Adresas', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_8',
-			[
-				'label' => esc_html__( 'Input #8', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Miestas', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_9',
-			[
-				'label' => esc_html__( 'Input #9', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Telefonas', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_10',
-			[
-				'label' => esc_html__( 'Input #10', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'El. Pastas', 'intero' ),
-			]
-		);
-		$this->add_control(
-			'multiple_input_11',
-			[
-				'label' => esc_html__( 'Input #11', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Pastabos', 'intero' ),
+				'label' => esc_html__( 'Input Field List', 'intero' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => [
+					[
+						'name' => 'input_field_label',
+						'label' => esc_html__( 'Label', 'intero' ),
+						'type' => \Elementor\Controls_Manager::TEXT,
+						'default' => esc_html__( 'Patalpų plotas m2' , 'intero' ),
+						'label_block' => true,
+					],
+					[
+						'name' => 'input_field_type',
+						'label' => esc_html__( 'Type', 'intero' ),
+						'type' => \Elementor\Controls_Manager::SELECT,
+						'options' => [
+							'text' => esc_html__( 'Text', 'intero' ),
+							'number' => esc_html__( 'Number', 'intero' ),
+							'email' => esc_html__( 'Email', 'intero' ),
+						],
+					],
+					[
+						'name' => 'input_field_required',
+						'label' => esc_html__( 'Require', 'intero' ),
+						'type' => \Elementor\Controls_Manager::SWITCHER,
+						'label_on' => esc_html__( 'Yes', 'intero' ),
+						'label_off' => esc_html__( 'No', 'intero' ),
+						'return_value' => 'yes',
+						'default' => 'yes',
+					],
+					[
+						'name' => 'input_field_column',
+						'label' => esc_html__( 'Column', 'intero' ),
+						'type' => \Elementor\Controls_Manager::SELECT,
+						'default' => '',
+						'options' => [
+							'col3' => esc_html__( 'Col 3', 'intero' ),
+							'col2' => esc_html__( 'Col 2', 'intero' ),
+							'col1' => esc_html__( 'Col 1', 'intero' ),
+						],
+					],
+					[
+						'name' => 'input_field_color',
+						'label' => esc_html__( 'Show Color Field', 'intero' ),
+						'type' => \Elementor\Controls_Manager::SWITCHER,
+						'label_on' => esc_html__( 'Show', 'intero' ),
+						'label_off' => esc_html__( 'Hide', 'intero' ),
+						'return_value' => 'yes',
+						'default' => 'no',
+					],
+					[
+						'name' => 'input_field_textarea',
+						'label' => esc_html__( 'Show TextArea', 'intero' ),
+						'type' => \Elementor\Controls_Manager::SWITCHER,
+						'label_on' => esc_html__( 'Show', 'intero' ),
+						'label_off' => esc_html__( 'Hide', 'intero' ),
+						'return_value' => 'yes',
+						'default' => 'no',
+					],
+					[
+						'name' => 'input_field_select',
+						'label' => esc_html__( 'Show Multiple Option Field', 'intero' ),
+						'type' => \Elementor\Controls_Manager::SWITCHER,
+						'label_on' => esc_html__( 'Show', 'intero' ),
+						'label_off' => esc_html__( 'Hide', 'intero' ),
+						'return_value' => 'yes',
+						'default' => 'no',
+					],
+					[
+						'name' => 'input_field_select_value',
+						'label' => esc_html__( 'Multiple Option Value', 'intero' ),
+						'type' => \Elementor\Controls_Manager::TEXTAREA,
+						'label_block' => true,
+					],
+				],
+				'default' => [
+					[
+						'input_field_label' => 'Patalpų plotas m2',
+						'input_field_type' => 'number',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col3',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Patalpų skaičius',
+						'input_field_type' => 'number',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col3',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Esamas pagrindas',
+						'input_field_type' => '',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col3',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => 'yes',
+						'input_field_select_value' => 'Betonas, Medinės grindys, Plytelės, OSB plokštė',
+					],
+					[
+						'input_field_label' => 'Vardas',
+						'input_field_type' => 'text',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col3',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Pavardė',
+						'input_field_type' => 'text',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col3',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Spalva',
+						'input_field_type' => '',
+						'input_field_required' => '',
+						'input_field_column' => 'col3',
+						'input_field_color' => 'yes',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Adresas',
+						'input_field_type' => 'text',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col2',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Miestas',
+						'input_field_type' => 'text',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col2',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Telefonas',
+						'input_field_type' => 'text',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col2',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'El. Pastas',
+						'input_field_type' => 'text',
+						'input_field_required' => 'yes',
+						'input_field_column' => 'col2',
+						'input_field_color' => '',
+						'input_field_textarea' => '',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+					[
+						'input_field_label' => 'Pastabos',
+						'input_field_type' => '',
+						'input_field_required' => '',
+						'input_field_column' => 'col1',
+						'input_field_color' => '',
+						'input_field_textarea' => 'yes',
+						'input_field_select' => '',
+						'input_field_select_value' => '',
+					],
+				],
+				'title_field' => '{{{ input_field_label }}}',
 			]
 		);
 

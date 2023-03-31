@@ -86,8 +86,7 @@ jQuery('.intero_popup_cross a').click(function() {
     jQuery('body').css('overflow', 'inherit');
 });
 
-
-
+// product count field 
 function increamentShow(select1, select2) {
     jQuery(select1).click(function () {
         var price = jQuery('.intero_var_select .intero_product_price').val(); 

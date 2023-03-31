@@ -179,39 +179,17 @@
             <h2><?php echo $settings['input_top_text']?></h2>
 
             <div class="intero-input-col3">
+                <?php 
+                    $multiple_input_list = $settings['multiple_input_list'];
+                    $i = 1;
+                    foreach($multiple_input_list as $item) {
+                    $i++;
 
-                <div>
-                    <label for="input1"><?php echo $settings['multiple_input_1']?></label>
-                    <input type="number" name="input1" id="input1" placeholder="<?php echo $settings['multiple_input_1']?>" required>
-                </div>
+                    if($item['input_field_color'] == 'yes') {
+                ?>
 
-                <div>
-                    <label for="input2"><?php echo $settings['multiple_input_2']?></label>
-                    <input type="number" name="input2" id="input2" placeholder="<?php echo $settings['multiple_input_2']?>" required>
-                </div>
-
-                <div>
-                    <label for="input3"><?php echo $settings['multiple_input_3']?></label>
-                    <select id="input3" name="input3" required>
-                        <option value="Betonas">Betonas</option>
-                        <option value="Medinės grindys">Medinės grindys</option>
-                        <option value="Plytelės">Plytelės</option>
-                        <option value="OSB plokštė">OSB plokštė</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="input4"><?php echo $settings['multiple_input_4']?></label>
-                    <input type="text" name="input4" id="input4" placeholder="<?php echo $settings['multiple_input_4']?>" required>
-                </div>
-
-                <div>
-                    <label for="input5"><?php echo $settings['multiple_input_5']?></label>
-                    <input type="text" name="input5" id="input5" placeholder="<?php echo $settings['multiple_input_5']?>" required>
-                </div>
-
-                <div style="position: relative;">
-                    <label for="null"><?php echo $settings['multiple_input_6']?> <a href="#intero_col_combo" class="intero_combo">Pasirinkti</a></label>
+                <div style="position: relative;" class="<?php echo $item['input_field_column'];?>">
+                    <label for="null"><?php echo $item['input_field_label']?> <a href="#intero_col_combo" class="intero_combo">Pasirinkti</a></label>
                     <div class="intero_small_product">
                         <div class="loading-animation loading-animation2"><img src="https://i.gifer.com/ZZ5H.gif"></div>
                         <img class="smImg" src="<?php echo $thumImage;?>" alt="product-image">
@@ -219,34 +197,53 @@
                     </div>
                 </div>
 
-                <div>
-                    <label for="input6"><?php echo $settings['multiple_input_7']?></label>
-                    <input type="text" name="input6" id="input6" placeholder="<?php echo $settings['multiple_input_7']?>" required>
+                <?php } else if($item['input_field_textarea'] == 'yes'){
+                ?>
+                <div class="<?php echo $item['input_field_column'];?>">
+                    <label for="input10"><?php echo $item['input_field_label']?></label>
+                    <textarea name="input10" id="input10" cols="10" rows="3" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> ></textarea>
                 </div>
-
-                <div>
-                    <label for="input7"><?php echo $settings['multiple_input_8']?></label>
-                    <input type="text" name="input7" id="input7" placeholder="<?php echo $settings['multiple_input_8']?>" required>
+                <?php
+                } else if($item['input_field_select'] == 'yes') {
+                ?>
+                <div class="<?php echo $item['input_field_column'];?>">
+                    <label for="input3"><?php echo $item['input_field_label']?></label>
+                    <textarea class="interExtraTextarea" id="interTextarea<?php echo $i;?>"><?php echo $item['input_field_select_value']?></textarea>
+                    <select id="interSelectarea<?php echo $i;?>" name="input3" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> ></select>
                 </div>
+                <script>
+                    // textarea as a select option parameter
+                    function createOptions(textareaId, selectFieldId) {
+                        var textarea1 = jQuery('#' + textareaId);
+                        var selectField1 = jQuery('#' + selectFieldId);
+                        var values = jQuery(textarea1).text().split(',');
+                        selectField1.empty();
+                        for (var i = 0; i < values.length; i++) {
+                            var value = values[i].trim();
+                            var option = jQuery('<option>', {value: value, text: value});
+                            selectField1.append(option);
+                        }
+                    }
 
+                    createOptions('<?php echo "interTextarea".$i?>', '<?php echo "interSelectarea".$i?>');
+                </script>
+                <?php
+                } else{ ?>
+
+                <div class="<?php echo $item['input_field_column'];?>">
+                    <label for="input<?php echo $i?>"><?php echo $item['input_field_label']?></label>
+                    <input type="<?php echo $item['input_field_type'];?>" name="input<?php echo $i?>" id="input<?php echo $i?>" placeholder="<?php echo $item['input_field_label']?>" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> >
+                </div>
+                
+                <?php
+                    } }
+                ?>
+                
+
+                
             </div>
 
-            <div class="intero-input-col2">
-                <div>
-                    <label for="input8"><?php echo $settings['multiple_input_9']?></label>
-                    <input type="text" name="input8" id="input8" placeholder="<?php echo $settings['multiple_input_9']?>" required>
-                </div>
-
-                <div>
-                    <label for="input9"><?php echo $settings['multiple_input_10']?></label>
-                    <input type="text" name="input9" id="input9" placeholder="<?php echo $settings['multiple_input_10']?>" required>
-                </div>
-            </div>
-
-            <div>
-                <label for="input10"><?php echo $settings['multiple_input_11']?></label>
-                <textarea name="input10" id="input10" cols="10" rows="3"></textarea>
-            </div>
+            
         </div>
 
         <div class="intero-cart-button">
