@@ -2,8 +2,8 @@
 // Register the admin menu
 function intero_admin_menu() {
     add_menu_page(
-        'Elementor Input Fields+ for WooCommerce',
-        'Extra Fields+',
+        'WooCommerce Input Fields+ ',
+        'Input Fields+',
         'manage_options',
         'extra-fieldPlus',
         'intero_admin_page',
@@ -13,7 +13,7 @@ function intero_admin_menu() {
 
     add_submenu_page(
         'extra-fieldPlus', // Parent slug
-        'Elementor Input Fields+ for WooCommerce Widgets', // Page title
+        'WooCommerce Input Fields+  Widgets', // Page title
         'Widgets', // Menu title
         'manage_options', // Capability required to access the menu
         'extra-fieldPlus-widgets', // Menu slug
@@ -57,7 +57,7 @@ function intero_admin_widget_page() {
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Elementor Input Fields+ for WooCommerce</td>
+                        <td>WooCommerce Input Fields+ </td>
                         <td>
                             <input type="checkbox" name="active" value="1"<?php if ($is_active) echo ' checked="checked"'; ?>>
                         </td>

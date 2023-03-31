@@ -27,7 +27,7 @@ function inter_required_notice() {
     if ( ! function_exists( 'elementor_load_plugin_textdomain' ) ) {
         ?>
         <div class="notice notice-error">
-            <p><?php esc_html_e( ' "Elementor Input Fields+ for WooCommerce" Plugin requires Elementor to be installed and activated. Please install and activate Elementor.', 'intero' ); ?></p>
+            <p><?php esc_html_e( ' "WooCommerce Input Fields+ " Plugin requires Elementor to be installed and activated. Please install and activate Elementor.', 'intero' ); ?></p>
             <p><a href="<?php echo esc_url( wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Install Elementor', 'intero' ); ?></a></p>
         </div>
         <?php

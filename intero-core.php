@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Elementor Input Fields+ for WooCommerce
+ * Plugin Name: WooCommerce Input Fields+ 
  * Description: Develop By Intero Developers
  * Version:     1.0.0
  * Author:      Awal Bashar
