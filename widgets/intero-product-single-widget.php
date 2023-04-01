@@ -547,10 +547,24 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 <?php
     global $product;
 
-    // Get the current product
-    if ( ! $product ) {
-        $product = wc_get_product();
-    }
+	$product__id;
+
+	$args = array(
+		'post_type'      => 'product',
+		'posts_per_page' => 1,
+		'orderby'        => 'ID',
+		'order'          => 'ASC'
+	);
+	
+	$products = get_posts( $args );
+
+	if ( is_singular() && is_product() ) {
+		$product__id = get_the_ID();
+	} else {
+		$product_id = $products[0]->ID;;
+	}
+
+	$product = new WC_Product_Variable( $product__id );
     $singleId = get_the_ID();
     if ($product->is_type('variable')) {
         $variations1 = $product->get_available_variations();
@@ -633,8 +647,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 								<label for="collect_list"><?php echo $settings['collection_text'];?></label>
 								<select id="collect_list" onchange="collectionId(this.value)">
 								<?php 
-									$product_slugOut = $product->get_slug();
-
 									$args = array(
 										'post_type' => 'product',
 										'tax_query' => array(
@@ -900,8 +912,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 									<label for="collect_list"><?php echo $settings['collection_text'];?></label>
 									<select id="collect_list" onchange="collectionId2(this.value)">
 									<?php 
-										$product_slugOut = $product->get_slug();
-
 										$args = array(
 											'post_type' => 'product',
 											'tax_query' => array(
