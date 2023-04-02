@@ -43,6 +43,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 		);
 		$this->end_controls_section();
 
+		
 		// Content Tab Start1
 		$this->start_controls_section(
 			'text_change_wrapper',
@@ -495,6 +496,20 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'main_price_wrapper_type',
+				'selector' => '{{WRAPPER}} .intero_main_price',
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'regular_price_wrapper_type',
+				'selector' => '{{WRAPPER}} .intero_regular_price',
+			]
+		);
 		$this->end_controls_section();
 
 
@@ -515,6 +530,13 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'img_top_text_style_typo',
+				'selector' => '{{WRAPPER}} .intero-container .intero-product-price h4',
+			]
+		);
 		$this->add_control(
 			'cat_top_text_style_color',
 			[
@@ -525,6 +547,13 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cat_top_text_style_typo',
+				'selector' => '{{WRAPPER}} .intero-container .intero_top_arrow_text',
+			]
+		);
 		$this->add_control(
 			'input_top_text_style_color',
 			[
@@ -532,6 +561,61 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .intero-container .intero-option-bottom h2' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'input_top_text_style_typo',
+				'selector' => '{{WRAPPER}} .intero-container .intero-option-bottom h2',
+			]
+		);
+		$this->add_control(
+			'variation_text_style_color',
+			[
+				'label' => esc_html__( 'Variation text Color', 'intero' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .intero_var_name' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'variation_text_style_typo',
+				'selector' => '{{WRAPPER}} .intero_var_name',
+			]
+		);
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'heart_icon_wrapper',
+			[
+				'label' => esc_html__( 'Wishlist Icon', 'intero' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+		$this->add_control(
+			'heart_icon_height',
+			[
+				'label' => esc_html__( 'Icon Height', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px','custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 25,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 25,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .intero_wishlist img' => 'height: {{SIZE}}{{UNIT}} !important;',
 				],
 			]
 		);
@@ -568,10 +652,19 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
     $singleId = get_the_ID();
     if ($product->is_type('variable')) {
         $variations1 = $product->get_available_variations();
+		// echo "<pre>";
+		// print_r($variations1);
+		// die();
         $thumImage = $variations1[0]['image']['url'];
         $thumPrice = $variations1[0]['display_price'];
         $thumRegularPrice = $variations1[0]['display_regular_price'];
-        $thumName = $variations1[0]['attributes']['attribute_pa_quantity'];
+        $thumName = $variations1[0]['attributes'];
+		$thumName1 = '';
+		foreach ($thumName as $key => $value) {
+			$taxonomy = str_replace('attribute_', '', $key);
+			$term = get_term_by('slug', $value, $taxonomy);
+			$thumName1 =  $term->name;
+		}
         $thumVarId = $variations1[0]['variation_id'];
     }
 ?>
@@ -755,7 +848,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						<div class="intero_small_product">
 							<div class="loading-animation loading-animation2"><img src="https://i.gifer.com/ZZ5H.gif"></div>
 							<img class="smImg" src="<?php echo $thumImage;?>" alt="product-image">
-							<span><?php echo $thumName;?></span>
+							<span><?php echo $thumName1;?></span>
 						</div>
 					</div>
 
@@ -1045,10 +1138,18 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						var variation = variations[i];
 						
 						var varProductId = variation.variation_id;
+						console.log(varProductId);
 						var varprice = variation.display_price;
 						var varregular_price = variation.display_regular_price;
 						var image_url = variation.image.url;
-						var varName = variation.attributes.attribute_pa_quantity;
+						var varName = variation.attributes;
+						var varName1 = '';
+						for(var key in varName) {
+							if (varName.hasOwnProperty(key)) {
+								varName1 = varName[key];
+								varName1 = varName1.toUpperCase().replace(/-/g, ' ');
+							}
+						}
 
 						// Display the variation data
 						jQuery('.intero-color-variation').append(
@@ -1067,7 +1168,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 								</div>
 								<img class="intero_var_product_img" src="${image_url}"
 									alt="">
-								<span class="intero_var_name">${varName}</span>
+								<span class="intero_var_name">${varName1}</span>
 								<a href="javascript:void(0)" class="intero_btn1 inTeroBtn">
 									<input type="radio" name="variation_id" value="${varProductId}" ${variations[0].variation_id == varProductId ? 'Checked' : ''}>
 									<span class="intero_color_choose_text">${variations[0].variation_id == varProductId ? '<?php echo $settings['selected_btn_text']?>' : '<?php echo $settings['choose_btn_text']?>'}</span>
@@ -1130,7 +1231,14 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						var varprice = variation.display_price;
 						var varregular_price = variation.display_regular_price;
 						var image_url = variation.image.url;
-						var varName = variation.attributes.attribute_pa_quantity;
+						var varName = variation.attributes;
+						var varName1 = '';
+						for(var key in varName) {
+							if (varName.hasOwnProperty(key)) {
+								varName1 = varName[key];
+								varName1 = varName1.toUpperCase().replace(/-/g, ' ');
+							}
+						}
 
 						// Display the variation data
 						jQuery('.intero-color-variation').append(
@@ -1149,7 +1257,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 								</div>
 								<img class="intero_var_product_img" src="${image_url}"
 									alt="">
-								<span class="intero_var_name">${varName}</span>
+								<span class="intero_var_name">${varName1}</span>
 								<a href="javascript:void(0)" class="intero_btn1 inTeroBtn">
 									<input type="radio" name="variation_id" value="${varProductId}" ${variations[0].variation_id == varProductId ? 'Checked' : ''}>
 									<span class="intero_color_choose_text">${variations[0].variation_id == varProductId ? '<?php echo $settings['selected_btn_text']?>' : '<?php echo $settings['choose_btn_text']?>'}</span>
@@ -1172,6 +1280,76 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 		};
 		
+
+
+	// color variation choose button active/deactive and btn text changed and image changed
+	function runCollationCode() {
+		jQuery(document).on('click', '.intero-color-variation .intero_btn1', function() {
+			jQuery('.intero-color-variation > div').removeClass('intero_var_select');
+
+			jQuery(this).parent().addClass('intero_var_select');
+
+			jQuery('.intero_color_choose_text').text('<?php echo $settings['choose_btn_text'];?>');
+			jQuery('.intero_var_select .intero_color_choose_text').text('<?php echo $settings['selected_btn_text'];?>');
+
+			var intero_var_img_get = jQuery('.intero_var_select .intero_var_product_img').attr('src');
+			jQuery('.intero_product_img_thumbnail .intero_product_img').attr('src', intero_var_img_get);
+			jQuery('.intero_product_zoom').attr('href', intero_var_img_get);
+
+			jQuery('.intero-product-price').remove();
+			var intero_color_variation_price = jQuery('.intero_var_select .intero_product_price').val();
+			var intero_color_variation_price_regular = jQuery('.intero_var_select .intero_product_price_regular').val();
+			var intero_color_variation_name = jQuery('.intero_var_select .intero_var_name').text();
+			var increament_num_field2 = jQuery('.increament_num_field').val();
+			var increament_num_field = jQuery('.intero_product_img_thumbnail2').attr('style');
+
+			if(increament_num_field  == "display: none;") {
+				jQuery('.intero_product_img_thumbnail').append(`
+				<div class="intero-product-price">
+					<h4><?php echo $settings['img_top_text'];?></h4>
+					<h2>
+						<span class="intero_main_price">${intero_color_variation_price}$</span>
+						<del class="intero_regular_price">${intero_color_variation_price_regular}$</del></sub>
+					</h2>
+				</div>
+				`);
+			} else {
+				jQuery('.intero_product_img_thumbnail').append(`
+				<div class="intero-product-price">
+					<h4><?php echo $settings['img_top_text'];?></h4>
+					<h2>
+						<span class="intero_main_price">${intero_color_variation_price * increament_num_field2}$</span>
+						<del class="intero_regular_price">${intero_color_variation_price_regular * increament_num_field2}$</del></sub>
+					</h2>
+				</div>
+				`);
+			}
+			
+
+			jQuery('.intero_small_product .smImg').attr('src', intero_var_img_get);
+			jQuery('.intero_small_product span').text(intero_color_variation_name);
+
+			var interWishlistGet = jQuery('.intero_var_select .intero_wishlist').html();
+			jQuery('.intero_product_img_thumbnail .intero_wishlist').html(interWishlistGet);
+
+			var productId = jQuery(this).find('input').val();
+			jQuery('.addCartBtn').val(productId);
+		});
+
+		jQuery(document).on('click', '.intero-color-variation1 .intero_btn1', function() {
+			var interocolorvariation = jQuery('.intero-color-variation1').html();
+			jQuery('.intero-color-variation2').html(interocolorvariation);
+
+		});
+		jQuery(document).on('click', '.intero-color-variation2 .intero_btn1', function() {
+			jQuery('.intero-color-variation > div').removeClass('intero_var_select');
+			jQuery(this).parent().addClass('intero_var_select');
+
+			var interocolorvariation = jQuery('.intero-color-variation2').html();
+			jQuery('.intero-color-variation1').html(interocolorvariation);
+		});
+	};
+	runCollationCode();
 	</script>
 
 		

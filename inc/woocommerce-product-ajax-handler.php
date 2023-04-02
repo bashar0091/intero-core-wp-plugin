@@ -15,7 +15,13 @@ function my_ajax_function(){
         $showFirstPrice = $variations[0]['display_price'];
 		$showFirstRegularPrice = $variations[0]['display_regular_price'];
         $showFirstImg = $variations[0]['image']['url']; 
-        $showFirstName = $variations[0]['attributes']['attribute_pa_quantity']; 
+        $showFirstName = $variations[0]['attributes'];
+        $showFirstName1 = ''; 
+        foreach ($showFirstName as $key => $value) {
+			$taxonomy = str_replace('attribute_', '', $key);
+			$term = get_term_by('slug', $value, $taxonomy);
+			$showFirstName1 =  $term->name;
+		}
         $showFirstID = $variations[0]['variation_id']; 
 
         echo json_encode(
@@ -23,7 +29,7 @@ function my_ajax_function(){
                 'printFirstPrice' => $showFirstPrice,
                 'printFirstRegularPrice' => $showFirstRegularPrice,
                 'printFirstImg' => $showFirstImg,
-                'printFirstName' => $showFirstName,
+                'printFirstName' => $showFirstName1,
                 'product_variation' => $variations,
                 'printFirstID' => $showFirstID,
             ),
