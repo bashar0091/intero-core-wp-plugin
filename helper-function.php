@@ -33,3 +33,4 @@ function inter_required_notice() {
         <?php
     }
 }
+

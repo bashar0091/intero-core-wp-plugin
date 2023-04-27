@@ -47,3 +47,41 @@ function increamentShow(select1, select2) {
 }
 increamentShow('.plus', '.minus');
 increamentShow('.plus1', '.minus1');
+
+
+
+
+// // Define your basic authorization credentials
+// var username = 'eshop'; // Replace with your actual username
+// var password = 'Uqf26wC8jYNB9jOp#4'; // Replace with your actual password
+
+// // Create an object to hold your data
+// var dataToSend = {
+//     CompanyID: 111,
+//     CompanyName: 'kit',
+//     CompanyCode: '133',
+//     Email: 'kit@gmail.com',
+//     FirstName: 'kit',
+//     LastName: 'kitted',
+//     Address: 'khulna',
+//     City: 'band'
+//   // Add more key-value pairs as needed
+// };
+
+// // Send the AJAX request
+// jQuery.ajax({
+//   url: 'https://adeso2.terrait.lt/companies', // Specify the URL to which you want to send the data
+//   type: 'POST', // Specify the HTTP method for the request (in this case, POST)
+//   data: dataToSend, // Include the data to send
+//   headers: {
+//     'Authorization': 'Basic ' + btoa(username + ':' + password) // Include basic authorization headers
+//   },
+//   success: function(data) { // Optional success callback function
+//     // Handle the success response here
+//     console.log('Data successfully sent:', data);
+//   },
+//   error: function(xhr, textStatus, errorThrown) { // Optional error callback function
+//     // Handle the error response here
+//     console.log('Error sending data:', textStatus, errorThrown);
+//   }
+// });
