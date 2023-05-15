@@ -146,15 +146,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 			],
 		);
 		$repeater->add_control(
-			'input_field_name',
-			[
-				'label' => esc_html__( 'Name', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'input_field' , 'intero' ),
-				'label_block' => true,
-			],
-		);
-		$repeater->add_control(
 			'input_field_required',
 			[
 				'label' => esc_html__( 'Require', 'intero' ),
@@ -230,7 +221,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Patalpų plotas m2',
 						'input_field_type' => 'number',
-						'input_field_name' => 'area_number',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col3',
 						'input_field_color' => '',
@@ -241,7 +231,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Patalpų skaičius',
 						'input_field_type' => 'number',
-						'input_field_name' => 'room_number',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col3',
 						'input_field_color' => '',
@@ -252,7 +241,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Esamas pagrindas',
 						'input_field_type' => '',
-						'input_field_name' => 'existing_basis',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col3',
 						'input_field_color' => '',
@@ -263,7 +251,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Vardas',
 						'input_field_type' => 'text',
-						'input_field_name' => 'name_intero',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col3',
 						'input_field_color' => '',
@@ -274,7 +261,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Pavardė',
 						'input_field_type' => 'text',
-						'input_field_name' => 'surname_intero',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col3',
 						'input_field_color' => '',
@@ -285,7 +271,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Spalva',
 						'input_field_type' => '',
-						'input_field_name' => '',
 						'input_field_required' => '',
 						'input_field_column' => 'col3',
 						'input_field_color' => 'yes',
@@ -296,7 +281,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Adresas',
 						'input_field_type' => 'text',
-						'input_field_name' => 'address_intero',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col2',
 						'input_field_color' => '',
@@ -307,7 +291,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Miestas',
 						'input_field_type' => 'text',
-						'input_field_name' => 'city_intero',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col2',
 						'input_field_color' => '',
@@ -318,7 +301,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Telefonas',
 						'input_field_type' => 'text',
-						'input_field_name' => 'phone_intero',
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col2',
 						'input_field_color' => '',
@@ -329,7 +311,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'El. Pastas',
 						'input_field_type' => 'text',
-						'input_field_name' => 'email_intero',	
 						'input_field_required' => 'yes',
 						'input_field_column' => 'col2',
 						'input_field_color' => '',
@@ -340,7 +321,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 					[
 						'input_field_label' => 'Pastabos',
 						'input_field_type' => '',
-						'input_field_name' => 'note_intero',
 						'input_field_required' => '',
 						'input_field_column' => 'col1',
 						'input_field_color' => '',
@@ -373,13 +353,13 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'crm_btn_text',
-			[
-				'label' => esc_html__( 'CRM Button Text', 'intero' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Gauti pasiūlymą', 'intero' ),
-			]
-		);
+				'crm_btn_text',
+				[
+					'label' => esc_html__( 'CRM Button Text', 'intero' ),
+					'type' => \Elementor\Controls_Manager::TEXT,
+					'default' => esc_html__( 'Gauti pasiūlymą', 'intero' ),
+				]
+			);
 		$this->add_control(
 			'choose_btn_text',
 			[
@@ -406,6 +386,48 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 		);
 		$this->end_controls_section();
 
+
+
+		$this->start_controls_section(
+			'mail_config_wrapper',
+			[
+				'label' => esc_html__( 'Mail Configuration', 'intero' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+		$this->add_control(
+			'mail_subject',
+			[
+				'label' => esc_html__( 'Mail Subject', 'intero' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				// 'default' => esc_html__( 'New Enquiry', 'intero' ),
+			]
+		);
+		$this->add_control(
+			'mail_to',
+			[
+				'label' => esc_html__( 'Mail To', 'intero' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				// 'default' => esc_html__( 'info@intero-shop.com', 'intero' ),
+			]
+		);
+		$this->add_control(
+			'mail_success_msg',
+			[
+				'label' => esc_html__( 'Success Message', 'intero' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				// 'default' => esc_html__( 'info@intero-shop.com', 'intero' ),
+			]
+		);
+		$this->add_control(
+			'mail_fail_msg',
+			[
+				'label' => esc_html__( 'Failed Message', 'intero' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				// 'default' => esc_html__( 'info@intero-shop.com', 'intero' ),
+			]
+		);
+		$this->end_controls_section();
 
 		// Style Tab Start
 
@@ -611,32 +633,27 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'heart_icon_wrapper',
+			'cat_text_wrapper',
 			[
-				'label' => esc_html__( 'Wishlist Icon', 'intero' ),
+				'label' => esc_html__( 'Other Text', 'intero' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
-			'heart_icon_height',
+			'cat_text_style_color',
 			[
-				'label' => esc_html__( 'Icon Height', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px','custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 25,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 25,
-				],
+				'label' => esc_html__( 'Variation text Color', 'intero' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .intero_wishlist img' => 'height: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} .intero_var_name' => 'color: {{VALUE}};',
 				],
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cat_text_style_typo',
+				'selector' => '{{WRAPPER}} .intero_var_name',
 			]
 		);
 		$this->end_controls_section();
@@ -688,10 +705,10 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
         $thumVarId = $variations1[0]['variation_id'];
     }
 ?>
+
 	<!-- template rendering here -->
 	<section>
-		<form method="post" enctype='multipart/form-data'>
-			<input type="hidden" name="action" value="submit_form">
+		<form method="post" action="">
 			<div class="intero-container">
 				<!-- intero image option left right grid  -->
 				<div class="intero-col2">
@@ -878,15 +895,15 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 						?>
 						<div class="<?php echo $item['input_field_column'];?>">
 							<label for="input<?php echo $i?>"><?php echo $item['input_field_label']?></label>
-							<textarea name="<?php echo $item['input_field_name'];?>" id="input<?php echo $i?>" cols="10" rows="3" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> ></textarea>
+							<textarea name="input<?php echo $i?>" id="input10" cols="10" rows="3" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> ></textarea>
 						</div>
 						<?php
 						} else if($item['input_field_select'] == 'yes') {
 						?>
 						<div class="<?php echo $item['input_field_column'];?>">
 							<label for="input<?php echo $i?>"><?php echo $item['input_field_label']?></label>
-							<textarea class="interExtraTextarea" id="interTextarea<?php echo $i;?>"><?php echo $item['input_field_select_value']?></textarea>
-							<select id="interSelectarea<?php echo $i;?>" name="<?php echo $item['input_field_name'];?>" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> ></select>
+							<textarea class="interExtraTextarea" id="interTextarea<?php echo $i;?>" name="input<?php echo $i?>"><?php echo $item['input_field_select_value']?></textarea>
+							<select id="interSelectarea<?php echo $i;?>" name="input<?php echo $i;?>" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> ></select>
 						</div>
 						<script>
 							// textarea as a select option parameter
@@ -909,7 +926,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 						<div class="<?php echo $item['input_field_column'];?>">
 							<label for="input<?php echo $i?>"><?php echo $item['input_field_label']?></label>
-							<input type="<?php echo $item['input_field_type'];?>" name="<?php echo $item['input_field_name'];?>" id="input<?php echo $i?>" placeholder="<?php echo $item['input_field_label']?>" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> >
+							<input type="<?php echo $item['input_field_type'];?>" name="input<?php echo $i?>" id="input<?php echo $i?>" placeholder="<?php echo $item['input_field_label']?>" <?php echo $item['input_field_required']=='yes' ? 'required' : '' ?> >
 						</div>
 						
 						<?php
@@ -944,7 +961,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 				
 					<div class="intero-right-btn">
 						<button class="intero_popup_btn inTeroBtn"><?php echo $settings['popup_btn_text'];?></button>
-						<button class="inTeroBtn" type="submit" name="sub_btn"><?php echo $settings['crm_btn_text'];?></button>
+						<button class="inTeroBtn" type="submit" name="mailsub" value=""><?php echo $settings['crm_btn_text'];?></button>
 					</div>
 				</div>
 
@@ -952,6 +969,73 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 			</div>
 		</form>
 	</section>
+
+	<?php
+		require 'phpmailer/PHPMailerAutoload.php';
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["mailsub"])) {
+			// Form data
+			$input2 = $_POST['input2'];
+			$input3 = $_POST['input3'];
+			$input4 = $_POST['input4'];
+			$input5 = $_POST['input5'];
+			$input6 = $_POST['input6'];
+			$input8 = $_POST['input8'];
+			$input9 = $_POST['input9'];
+			$input10 = $_POST['input10'];
+			$input11 = $_POST['input11'];
+			$input12 = $_POST['input12'];
+
+			$Mailsubject = $settings['mail_subject'];
+			$Mailto = $settings['mail_to'];
+			$mail_success_msg = $settings['mail_success_msg'];
+			$mail_fail_msg = $settings['mail_fail_msg'];
+
+			$mail = new PHPMailer;
+			$mail->isSMTP();
+			$mail->Host = 'mail.intero.lt';
+			$mail->Port = 587;
+			$mail->SMTPAuth = true;
+			$mail->SMTPSecure = 'tls';
+
+			$mail->Username = "pardavimai@intero.lt";
+			$mail->Password = "&zY@*]8iZ*pG";
+
+			$mail->setFrom($input11, $input5);
+			$mail->addAddress($Mailto);
+			$mail->addReplyTo($input11);
+
+			$mail->isHTML(true);
+			$mail->Subject = $Mailsubject;
+			$mail->Body = '
+			Patalpų plotas m2 :' .$input2.' 
+			<br>
+			Patalpų skaičius :' . $input3 .'
+			<br>
+			Esamas pagrindas : '.$input4.'
+			<br>
+			Vardas : '.$input5.'
+			<br>
+			Pavardė : '.$input6.'
+			<br>
+			Adresas : '.$input8.'
+			<br>
+			Miestas : '.$input9.'
+			<br>
+			Telefonas : '.$input10.'
+			<br>
+			El. Pastas : '.$input11.'
+			<br>
+			El. Pastas : '.$input12.'
+			';
+
+			if (!$mail->send()) {
+				echo "<h4 style='border: 1px solid;padding: 10px;'>".$mail_fail_msg."</h4>";
+			} else {
+				echo "<h4 style='border: 1px solid;padding: 10px;'>".$mail_success_msg."</h4>";
+			}
+		}
+	?>
 
 	<section id="intero_popup">
 		<div class="loading-animation"><img src="https://i.gifer.com/ZZ5H.gif"></div>
@@ -1214,7 +1298,6 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 
 		};
 
-
 		function collectionId2(product__Id) {
 			var product_id = product__Id;
 
@@ -1375,7 +1458,7 @@ class intero_product_single_widget extends \Elementor\Widget_Base {
 	runCollationCode();
 	</script>
 
+		
 		<?php
-		require_once('partials/crm-api-action.php');
 	}
 }
